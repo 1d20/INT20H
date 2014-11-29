@@ -9,8 +9,8 @@ config = require './frontend/config'
 
 install = require "gulp-install"
 
-gulp.task 'install', ->
-	gulp.src ['./frontend/bower.json', './package.json']
+gulp.task 'bower', ->
+	gulp.src ['./frontend/bower.json']
   		.pipe install()
 
 gulp.task 'templates', ->

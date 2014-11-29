@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.core import serializers
-
+from json import dumps as to_json
 from models import *
 
 def type_all(request):
     types = Type.objects.all()
-    json = serializers.serialize('json', types)
+    json = to_json([t.to_json() for t in types])
     return HttpResponse(json)
 
 def type_add(request):
@@ -23,5 +22,5 @@ def type_by_id(request, pk):
         requested_type = Type.objects.get(pk=pk)
     except Type.DoesNotExist:
         return HttpResponse('not found')
-    json = serializers.serialize('json', [requested_type,])
+    json = to_json(requested_type.to_json())
     return HttpResponse(json)

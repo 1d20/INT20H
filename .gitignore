@@ -57,3 +57,4 @@ node_modules
 frontend/.sass-cache
 frontend/bower_components
 static
+db.sqlite3

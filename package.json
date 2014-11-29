@@ -1,0 +1,19 @@
+{
+  "name": "INT20H",
+  "version": "1.0.0",
+  "description": "INT20H ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git-andrewdacenko:1d20/INT20H.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "gulp": "^3.8.10"
+  }
+}

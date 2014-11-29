@@ -9,10 +9,13 @@ def type_all(request):
     return HttpResponse(json)
 
 def type_add(request):
+    if not request.method == "POST":
+        return HttpResponse('request shoud be POST, but it is %s'%str(request.method))
+
     newtype = Type();
-    newtype.desc = request.POST[desc]
-    newtype.name = request.POST[name]
-    newtype.attrs = request.POST[attrs]
+    newtype.desc = request.POST['desc']
+    newtype.name = request.POST['name']
+    newtype.attrs = request.POST['attrs']
     newtype.save()
 
     return HttpResponse('done')

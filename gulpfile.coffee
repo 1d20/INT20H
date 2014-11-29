@@ -18,6 +18,11 @@ gulp.task 'templates', ->
     .pipe jade()
     .pipe gulp.dest config.templates.dest
 
+gulp.task 'index', ->
+  gulp.src config.index.src
+    .pipe jade()
+    .pipe gulp.dest config.index.dest
+
 gulp.task 'images', ->
   gulp.src config.images.src
     .pipe gulp.dest config.images.dest
@@ -59,6 +64,7 @@ gulp.task 'json', ->
         .pipe gulp.dest config.json.dest
 
 gulp.task 'watch', ->
+    gulp.watch config.index.src, ['index']
     gulp.watch config.templates.src, ['templates']
     gulp.watch config.compass.src, ['compass']
     gulp.watch config.vendors.js.src, ['vendors:js']
@@ -68,6 +74,7 @@ gulp.task 'watch', ->
     gulp.watch config.json.src, ['json']
 
 gulp.task 'dev', [
+    'index'
     'templates'
     'compass'
     'vendors'
@@ -79,6 +86,7 @@ gulp.task 'dev', [
 
 gulp.task 'default', [
     'bower' 
+    'index'
     'templates'
     'compass'
     'vendors'

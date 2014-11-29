@@ -56,3 +56,4 @@ target/
 node_modules
 static
 db.sqlite3
+templates/index.html

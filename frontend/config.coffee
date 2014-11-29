@@ -3,8 +3,11 @@ dest = __dirname + '/../static'
 bower = src + '/bower_components'
 
 module.exports = 
+	index:
+		src: src + '/jade/index.jade'
+		dest: __dirname + '/../templates'
 	templates:
-		src: [src + '/jade/**/*.jade']
+		src: [src + '/jade/templates/*.jade']
 		dest: dest
 	compass:
 		src: [src + '/sass/**/*.sass']

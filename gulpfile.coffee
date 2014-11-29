@@ -39,12 +39,30 @@ gulp.task 'coffee', ->
 		.pipe concat('scripts.js')
 		.pipe gulp.dest config.coffee.dest
 
+gulp.task 'json', ->
+    gulp.src config.json.src
+        .pipe gulp.dest config.json.dest
+
 gulp.task 'watch', ->
     gulp.watch config.templates.src, ['templates']
     gulp.watch config.compass.src, ['compass']
     gulp.watch config.vendors.js.src, ['vendors']
     gulp.watch config.coffee.src, ['coffee']
 
-gulp.task 'dev', ['templates', 'compass', 'vendors', 'coffee', 'watch']
+gulp.task 'dev', [
+    'templates'
+    'compass'
+    'vendors'
+    'coffee'
+    'json'
+    'watch'
+]
 
-gulp.task 'default', ['bower', 'templates', 'compass', 'vendors', 'coffee']
+gulp.task 'default', [
+    'bower' 
+    'templates'
+    'compass'
+    'vendors'
+    'json'
+    'coffee'
+]

@@ -19,3 +19,6 @@ module.exports =
 	coffee:
 		src: [src + '/coffee/app.coffee']
 		dest: dest + '/js'
+	json:
+		src: [src + '/json/**/*.json']
+		dest: dest + '/json'

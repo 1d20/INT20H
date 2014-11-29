@@ -17,7 +17,17 @@ module.exports =
 			]
 			dest: dest + '/js'
 	coffee:
-		src: [src + '/coffee/app.coffee']
+		src: [
+			src + '/coffee/filters.coffee'
+			src + '/coffee/services.coffee'
+			src + '/coffee/directives.coffee'
+			src + '/coffee/controllers.coffee'
+			src + '/coffee/filters/*.coffee'
+			src + '/coffee/services/*.coffee'
+			src + '/coffee/directives/*.coffee'
+			src + '/coffee/controllers/*.coffee'
+			src + '/coffee/app.coffee'
+		]
 		dest: dest + '/js'
 	json:
 		src: [src + '/json/**/*.json']

@@ -3,7 +3,7 @@ head
 	meta(charset="utf-8")
 	title BEST
 	link(src="/css/styles.css")
-body
-	h1 Hello world!
+body(ng-app="best" ng-controller="MainController as main")
+	h1 {{main.user}}
 	script(src="/js/vendors.js")
 	script(src="/js/scripts.js")

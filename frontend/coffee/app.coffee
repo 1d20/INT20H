@@ -1,3 +1,6 @@
-a = 1
-
-console.log 'err'
+angular.module 'best', [
+	'best.filters'
+	'best.services'
+	'best.directives'
+	'best.controllers'
+]

@@ -2,7 +2,6 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -24,7 +23,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    'social_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -37,9 +36,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'project.urls'
-
 WSGI_APPLICATION = 'project.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -50,15 +47,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-NEO4J_DATABASES = {
-    'default' : {
-        'HOST':'localhost',
-        'PORT':7474,
-        'ENDPOINT':'/db/data'
-    }
-}
-DATABASE_ROUTERS = ['neo4django.utils.Neo4djangoIntegrationRouter']
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -81,4 +69,14 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+GOOGLE_OAUTH2_CLIENT_ID = '779040052387-5d0mo39muqgesmluhkpo93fhpgnl7a2j.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = 'cCNBdaQECY6oLeRxs_2-YqWA'
+AUTHENTICATION_BACKENDS = (
+'social_auth.backends.google.GoogleOAuth2Backend',
+'django.contrib.auth.backends.ModelBackend',
+)
+LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_USER_MODEL = 'auth.User'
 

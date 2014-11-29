@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from models import *
+from neo_models import *
 
 
 def test(request):

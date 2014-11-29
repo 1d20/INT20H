@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import *
+from myapp.models import *
 
 admin.site.register(Type)
 admin.site.register(Type2Type)

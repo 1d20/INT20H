@@ -1,4 +1,4 @@
-from models import *
+from neo_models import *
 
 def seed_countries():
     try:

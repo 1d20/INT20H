@@ -13,11 +13,11 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^', include('social_auth.urls')),
+
     url(r'^profile/$', profile),
     url(r'^logout/$', logout),
     url(r'^complete/(?P<backend>[^/]+)/$', AuthComplete.as_view()),
     url(r'^login-error/$', LoginError.as_view()),
-
 
     #url(r'^.*$', RedirectView.as_view(url='/', permanent=False), name='index'),
 )

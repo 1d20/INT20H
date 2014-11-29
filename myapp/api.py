@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from models import *
+from neo_models import *
 from seeder import *
 import json
 

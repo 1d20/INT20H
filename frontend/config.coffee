@@ -1,7 +1,15 @@
 src = __dirname
-build = __dirname + '/../static/js'
+dest = __dirname + '/../static'
+bower = src + '/bower_components'
 
 module.exports = 
+	vendors:
+		js:
+			src: [
+				bower + '/jquery/dist/jquery.js'
+				bower + '/angular/angular.js'
+			]
+			dest: dest + '/js'
 	coffee:
 		src: [src + '/coffee/app.coffee']
-		build: build
+		dest: dest + '/js'

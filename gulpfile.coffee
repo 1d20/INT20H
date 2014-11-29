@@ -28,10 +28,17 @@ gulp.task 'compass', ->
 	    .pipe concat('styles.css')
 	    .pipe gulp.dest config.compass.dest
 
-gulp.task 'vendors', ->
+gulp.task 'vendors:css', ->
+	gulp.src config.vendors.css.src
+		.pipe concat 'vendors.css'
+		.pipe gulp.dest config.vendors.css.dest
+
+gulp.task 'vendors:js', ->
 	gulp.src config.vendors.js.src
 		.pipe concat('vendors.js')
 		.pipe gulp.dest config.vendors.js.dest
+
+gulp.task 'vendors', ['vendors:css', 'vendors:js']
 
 gulp.task 'coffee', ->
 	gulp.src config.coffee.src
@@ -46,8 +53,10 @@ gulp.task 'json', ->
 gulp.task 'watch', ->
     gulp.watch config.templates.src, ['templates']
     gulp.watch config.compass.src, ['compass']
-    gulp.watch config.vendors.js.src, ['vendors']
+    gulp.watch config.vendors.js.src, ['vendors:js']
+    gulp.watch config.vendors.css.src, ['vendors:css']
     gulp.watch config.coffee.src, ['coffee']
+    gulp.watch config.json.src, ['json']
 
 gulp.task 'dev', [
     'templates'

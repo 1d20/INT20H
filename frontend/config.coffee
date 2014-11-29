@@ -8,8 +8,13 @@ module.exports =
 		dest: dest
 	compass:
 		src: [src + '/sass/**/*.sass']
-		dest: dest + '/css/'
+		dest: dest + '/css'
 	vendors:
+		css:
+			src: [
+				bower + '/bootstrap/dist/css/bootstrap.min.css'
+			]
+			dest: dest + '/css'
 		js:
 			src: [
 				bower + '/jquery/dist/jquery.js'

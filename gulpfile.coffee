@@ -14,19 +14,19 @@ gulp.task 'bower', ->
   		.pipe install()
 
 gulp.task 'templates', ->
-  gulp.src './frontend/jade/**/*.jade'
+  gulp.src config.templates.src
     .pipe jade()
-    .pipe gulp.dest './static/'
+    .pipe gulp.dest config.templates.dest
 
 gulp.task 'compass', ->
-	gulp.src './frontend/sass/**/*.sass'
+	gulp.src config.compass.src
 		.pipe compass project: __dirname + '/frontend', css: 'css', sass: 'sass', image: 'images'
 	    .on 'error', (error) ->
 	      console.log error
 	      this.emit 'end'
 
 	    .pipe concat('styles.css')
-	    .pipe gulp.dest 'static/css/'
+	    .pipe gulp.dest config.compass.dest
 
 gulp.task 'vendors', ->
 	gulp.src config.vendors.js.src
@@ -38,5 +38,13 @@ gulp.task 'coffee', ->
 		.pipe coffee()
 		.pipe concat('scripts.js')
 		.pipe gulp.dest config.coffee.dest
+
+gulp.task 'watch', ->
+    gulp.watch config.templates.src, ['templates']
+    gulp.watch config.compass.src, ['compass']
+    gulp.watch config.vendors.js.src, ['vendors']
+    gulp.watch config.coffee.src, ['coffee']
+
+gulp.task 'dev', ['templates', 'compass', 'vendors', 'coffee', 'watch']
 
 gulp.task 'default', ['bower', 'templates', 'compass', 'vendors', 'coffee']

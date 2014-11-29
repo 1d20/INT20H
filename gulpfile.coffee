@@ -4,6 +4,8 @@ concat = require 'gulp-concat'
 uglify = require 'gulp-uglify'
 compass = require 'gulp-compass'
 
+config = require './frontend/config'
+
 gulp.task 'compass', ->
 	gulp.src './frontend/sass/**/*.sass'
 		.pipe compass project: __dirname + '/frontend', css: 'css', sass: 'sass', image: 'images'
@@ -14,5 +16,10 @@ gulp.task 'compass', ->
 	    .pipe concat('styles.css')
 	    .pipe gulp.dest 'static/css/'
 
-gulp.task 'default', ->
-	console.log 'hello'
+gulp.task 'coffee', ->
+	gulp.src config.coffee.src
+		.pipe coffee()
+		.pipe concat('scripts.js')
+		.pipe gulp.dest config.coffee.build
+
+gulp.task 'default', ['compass', 'coffee']

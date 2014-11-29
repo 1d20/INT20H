@@ -14,12 +14,15 @@ module.exports =
 			src: [
 				bower + '/bootstrap/dist/css/bootstrap.min.css'
 				bower + '/bootswatch-dist/css/bootstrap.min.css'
+				bower + '/leaflet/dist/leaflet.css'
 			]
 			dest: dest + '/css'
 		js:
 			src: [
 				bower + '/jquery/dist/jquery.js'
 				bower + '/angular/angular.js'
+				bower + '/d3/d3.min.js'
+				bower + '/leaflet/dist/leaflet.js'
 			]
 			dest: dest + '/js'
 	coffee:

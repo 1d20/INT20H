@@ -438,3 +438,8 @@ footer .footer-below {
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
+
+header .container {
+  padding-top: 110px;
+  padding-bottom: 10px;
+}

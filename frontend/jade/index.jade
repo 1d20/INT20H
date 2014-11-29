@@ -30,17 +30,18 @@ body#page-top.index(ng-app="best" ng-controller="MainController as main")
     .container
       .row
         .col-lg-12
-          img.img-responsive(src='img/profile.png', alt='')
+          #main-map(style="height: 600px;")
+      .row
+        .col-lg-12
           .intro-text
-            span.name Start Bootstrap
+            span.name BEST MAPS
             hr.star-light
-            span.skills Web Developer - Graphic Artist - User Experience Designer
 
   section#portfolio
     .container
       .row
         .col-lg-12.text-center
-          h2 Portfolio
+          h2 Evaluate
           hr.star-primary
       .row
         .col-sm-4.portfolio-item

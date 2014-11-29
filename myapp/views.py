@@ -20,8 +20,8 @@ def type_add(request):
 
 def type_by_id(request, pk):
     try:
-        requested_type = Type.objects.get(pk=int(pk))
+        requested_type = Type.objects.get(pk=pk)
     except Type.DoesNotExist:
         return HttpResponse('not found')
-    json = serializers.serialize('json', requested_type)
+    json = serializers.serialize('json', [requested_type,])
     return HttpResponse(json)

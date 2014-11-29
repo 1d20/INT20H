@@ -9,7 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', home),
 
-    #url(r'^', include('myapp.urls')),
+    url(r'^api/', include('myapp.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^', include('social_auth.urls')),

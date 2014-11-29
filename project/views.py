@@ -11,7 +11,11 @@ from social_auth import __version__ as version
 
 
 def home(request):
-    return render_to_response('index.html')
+    ctx = {
+        'version': version,
+        'last_login': request.session.get('social_auth_last_login_backend')
+    }
+    return render_to_response('index.html', ctx, RequestContext(request))
 
 @login_required
 def profile(request):

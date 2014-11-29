@@ -1,4 +1,4 @@
-from neomodel import StructuredNode, StringProperty, IntegerProperty, RelationshipTo, RelationshipFrom, BooleanProperty
+from neomodel import StructuredNode, StringProperty, IntegerProperty, RelationshipTo, RelationshipFrom, BooleanProperty, One
 
 class Country(StructuredNode):
     code = StringProperty(unique_index=True, required=True)
@@ -6,18 +6,29 @@ class Country(StructuredNode):
     #contains
     universities = RelationshipFrom('University', 'country')
 
+    def to_json(self):
+        return {'code':self.code, 'name':self.name}
+    def to_full_json(self):
+        return {'code':self.code, 'name':self.name, 'universities':[u.to_json() for u in self.universities.all()]}
+
 class University(StructuredNode):
+    code = StringProperty(unique_index=True, required=True)
     name = StringProperty(unique_index=True, required=True)
     #in
-    country = RelationshipTo(Country, 'country')
+    country = RelationshipTo(Country, 'country', cardinality=One)
     #contains
     faculties = RelationshipFrom('Faculty', 'university')
+
+    def to_json(self):
+        return {'code':self.code, 'name':self.name, 'country':self.country.all()[0].code}
+    def to_full_json(self):
+        return {'code':self.code, 'name':self.name, 'country':self.country.all()[0].code, 'faculties':[u.to_json() for u in self.faculties]}
 
 class Faculty(StructuredNode):
     code = StringProperty(unique_index=True, required=True)
     name = StringProperty(unique_index=True, required=True)
     #in
-    university = RelationshipTo(University, 'university')
+    university = RelationshipTo(University, 'university', cardinality=One)
     #contains
     departments = RelationshipFrom('Department', 'faculty')
 
@@ -25,7 +36,7 @@ class Department(StructuredNode):
     code = StringProperty(unique_index=True, required=True)
     name = StringProperty(unique_index=True, required=True)
     #in
-    faculty = RelationshipTo(Faculty, 'faculty')
+    faculty = RelationshipTo(Faculty, 'faculty', cardinality=One)
     #contains
     groups = RelationshipFrom('Group', 'department')
     staff = RelationshipFrom('Employee', 'department')
@@ -34,7 +45,7 @@ class Group(StructuredNode):
     code = StringProperty(unique_index=True, required=True)
     name = StringProperty(unique_index=True, required=True)
     #in
-    department = RelationshipTo(Department, 'department')
+    department = RelationshipTo(Department, 'department', cardinality=One)
     #contains
     students = RelationshipFrom('Student', 'group')
 
@@ -43,7 +54,7 @@ class Student(StructuredNode):
     name = StringProperty(unique_index=True, required=True)
     is_lead = BooleanProperty(required=True, default=False)
     #in
-    group = RelationshipTo(Group, 'group')
+    group = RelationshipTo(Group, 'group', cardinality=One)
 
 class Employee(StructuredNode):
     name = StringProperty(unique_index=True, required=True)

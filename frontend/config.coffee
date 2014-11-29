@@ -13,6 +13,7 @@ module.exports =
 		css:
 			src: [
 				bower + '/bootstrap/dist/css/bootstrap.min.css'
+				bower + '/bootswatch-dist/css/bootstrap.min.css'
 			]
 			dest: dest + '/css'
 		js:

@@ -7,6 +7,12 @@ compass = require 'gulp-compass'
 
 config = require './frontend/config'
 
+install = require "gulp-install"
+
+gulp.task 'install', ->
+	gulp.src ['./frontend/bower.json', './package.json']
+  		.pipe install()
+
 gulp.task 'templates', ->
   gulp.src './frontend/jade/**/*.jade'
     .pipe jade()

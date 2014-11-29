@@ -65,11 +65,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'statics')
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 #https://console.developers.google.com/project/dulcet-bastion-779/apiui/credential?clientType&authuser=0
 
 GOOGLE_OAUTH2_CLIENT_ID = '779040052387-5d0mo39muqgesmluhkpo93fhpgnl7a2j.apps.googleusercontent.com'

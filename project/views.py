@@ -11,7 +11,7 @@ from social_auth import __version__ as version
 
 
 def home(request):
-    return render_to_response('home.html', {'version': version}, RequestContext(request))
+    return render_to_response('index.html')
 
 @login_required
 def profile(request):
@@ -26,10 +26,6 @@ def logout(request):
     auth_logout(request)
     return HttpResponseRedirect('/')
 
-def close_login_popup(request):
-    return render_to_response('close_popup.html', {}, RequestContext(request))
-
-
 class AuthComplete(View):
     def get(self, request, *args, **kwargs):
         backend = kwargs.pop('backend')
@@ -38,8 +34,6 @@ class AuthComplete(View):
         except Exception:
             messages.error(request, "Your Google Apps domain isn't authorized for this app")
             return HttpResponseRedirect('/home/')
-
-
 
 class LoginError(View):
     def get(self, request, *args, **kwargs):

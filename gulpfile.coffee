@@ -39,4 +39,4 @@ gulp.task 'coffee', ->
 		.pipe concat('scripts.js')
 		.pipe gulp.dest config.coffee.dest
 
-gulp.task 'default', ['compass', 'coffee']
+gulp.task 'default', ['bower', 'templates' 'compass', 'vendors', 'coffee']

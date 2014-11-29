@@ -70,6 +70,8 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
+#https://console.developers.google.com/project/dulcet-bastion-779/apiui/credential?clientType&authuser=0
+
 GOOGLE_OAUTH2_CLIENT_ID = '779040052387-5d0mo39muqgesmluhkpo93fhpgnl7a2j.apps.googleusercontent.com'
 GOOGLE_OAUTH2_CLIENT_SECRET = 'cCNBdaQECY6oLeRxs_2-YqWA'
 AUTHENTICATION_BACKENDS = (

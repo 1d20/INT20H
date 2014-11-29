@@ -1,32 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core import serializers
 
-from neo_models import *
+from models import *
 
+def type_all(request):
+    types = Type.objects.all()
+    json = serializers.serialize('json', types)
+    return HttpResponse(json)
 
-def test(request):
-    jim = Person(name='Jim', age=3).save()
-    jim.age = 4
-    jim.save() # validation happens here
-#    jim.delete()
- #   jim.refresh() # reload properties from neo
+def type_add(request):
+    newtype = Type();
+    newtype.desc = request.POST[desc]
+    newtype.name = request.POST[name]
+    newtype.attrs = request.POST[attrs]
+    newtype.save()
 
-    germany = Country(code='DE').save()
-    jim.country.connect(germany)
+    return HttpResponse('done')
 
-    if jim.country.is_connected(germany):
-        print("Jim's from Germany")
-
-    for p in germany.inhabitant.all():
-        print(p.name) # Jim
-
-    len(germany.inhabitant) # 1
-
-    # Find people called 'Jim' in germany
-    germany.inhabitant.search(name='Jim')
-
-    jim.country.disconnect(germany)
-
-    response = HttpResponse()
-    response.write(str(jim))
-    return response
+def type_by_id(request, pk):
+    try:
+        requested_type = Type.objects.get(pk=int(pk))
+    except Type.DoesNotExist:
+        return HttpResponse('not found')
+    json = serializers.serialize('json', requested_type)
+    return HttpResponse(json)

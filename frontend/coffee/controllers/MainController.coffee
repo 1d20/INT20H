@@ -1,4 +1,7 @@
-MainController = ($http) -> 
+MainController = ($http, SessionService) -> 
+
+	SessionService.login()
+	
 	@user = ''
 
 	getUserSuccess = (response) =>
@@ -11,4 +14,4 @@ MainController = ($http) ->
 		.then getUserSuccess, getUserError
 
 angular.module 'best.controllers'
-	.controller 'MainController', ['$http', MainController]
+	.controller 'MainController', ['$http', 'SessionService', MainController]

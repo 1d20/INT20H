@@ -11,10 +11,7 @@ from social_auth import __version__ as version
 
 
 def home(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('profile')
-    else:
-        return render_to_response('home.html', {'version': version}, RequestContext(request))
+    return render_to_response('home.html', {'version': version}, RequestContext(request))
 
 @login_required
 def profile(request):

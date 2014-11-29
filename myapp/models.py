@@ -32,6 +32,11 @@ class Faculty(StructuredNode):
     #contains
     departments = RelationshipFrom('Department', 'faculty')
 
+    def to_json(self):
+        return {'code':self.code, 'name':self.name, 'university':self.university.all()[0].code}
+    def to_full_json(self):
+        return {'code':self.code, 'name':self.name, 'university':self.university.all()[0].code, 'departments':[u.to_json() for u in self.departments]}
+
 class Department(StructuredNode):
     code = StringProperty(unique_index=True, required=True)
     name = StringProperty(unique_index=True, required=True)
@@ -40,6 +45,11 @@ class Department(StructuredNode):
     #contains
     groups = RelationshipFrom('Group', 'department')
     staff = RelationshipFrom('Employee', 'department')
+
+    def to_json(self):
+        return {'code':self.code, 'name':self.name, 'university':self.university.all()[0].code}
+    def to_full_json(self):
+        return {'code':self.code, 'name':self.name, 'university':self.university.all()[0].code, 'departments':[u.to_json() for u in self.departments]}
 
 class Group(StructuredNode):
     code = StringProperty(unique_index=True, required=True)

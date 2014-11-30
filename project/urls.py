@@ -18,5 +18,5 @@ urlpatterns = patterns('',
     url(r'^complete/(?P<backend>[^/]+)/$', AuthComplete.as_view()),
     url(r'^login-error/$', LoginError.as_view()),
 
-    #url(r'^.*$', RedirectView.as_view(url='/', permanent=False), name='index'),
+    url(r'^.*$', RedirectView.as_view(url='/', permanent=False), name='index'),
 )

@@ -4,12 +4,15 @@ div(ng-controller="TypeController as type")
       .row
         .col-lg-12
           br
-          h1.header Select // type.type.name // 
+          h1.header // type.type.name // stats 
             a.pull-right.btn.btn-primary(href='// "/types/" + type.type.id + "/create" //')
               i.fa.fa-plus
               | Add new
       .row
         .col-lg-12
+          .download(ng-click='type.download()')
+            i.fa.fa-download 
+            | &nbsp;Download
           #chart.c3(best-chart best-data='type.type.nodes')
 
       .row

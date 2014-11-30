@@ -13,6 +13,12 @@ TypeController = ($scope, $routeParams, $http, $location) ->
 			.then (response) ->
 				node.likes = response.data.likes
 
+	@download = =>
+		svg = $('#chart svg')[0].outerHTML;
+		$http.post '/pdf/', svg: svg
+			.then (response) => 
+				window.open('/static/file.pdf')
+
 	@addNew = =>
 		parent = @node.parent
 		node = angular.copy @node

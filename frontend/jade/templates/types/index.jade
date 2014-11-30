@@ -11,6 +11,9 @@ div(ng-controller='TypesController as types')
       .row
         .col-lg-12
           .col-lg-12
+            .download(ng-click='types.download()')
+              i.fa.fa-download 
+              | &nbsp;Download
             #chart.c3(best-chart best-data='types.nodes')
 
       .row

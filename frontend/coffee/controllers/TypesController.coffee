@@ -25,5 +25,11 @@ TypesController = ($scope, $http) ->
 			.then (response) =>
 				@type = {}
 
+	@download = =>
+		svg = $('#chart svg')[0].outerHTML;
+		$http.post '/pdf/', svg: svg
+			.then (response) => 
+				window.open('/static/file.pdf')
+
 angular.module 'best.controllers'
 	.controller 'TypesController', ['$scope', '$http', TypesController]

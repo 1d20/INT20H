@@ -1,0 +1,310 @@
+{
+    "21": {
+        "code": "EG",
+        "name": "egypt"
+    },
+    "28": {
+        "code": "GH",
+        "name": "ghana"
+    },
+    "31": {
+        "code": "KE",
+        "name": "kenya"
+    },
+    "54": {
+        "code": "ZA",
+        "name": "south africa"
+    },
+    "61": {
+        "code": "UG",
+        "name": "uganda"
+    },
+    "74": {
+        "code": "IL",
+        "name": "israel"
+    },
+    "77": {
+        "code": "SA",
+        "name": "saudi arabia"
+    },
+    "80": {
+        "code": "AZ",
+        "name": "azerbaijan"
+    },
+    "81": {
+        "code": "BH",
+        "name": "bahrain"
+    },
+    "82": {
+        "code": "BD",
+        "name": "bangladesh"
+    },
+    "87": {
+        "code": "CN",
+        "name": "china"
+    },
+    "94": {
+        "code": "HK",
+        "name": "hong kong"
+    },
+    "96": {
+        "code": "IN",
+        "name": "india"
+    },
+    "97": {
+        "code": "ID",
+        "name": "indonesia"
+    },
+    "98": {
+        "name": "iran, islamic republic of"
+    },
+    "99": {
+        "code": "IQ",
+        "name": "iraq"
+    },
+    "100": {
+        "code": "JP",
+        "name": "japan"
+    },
+    "103": {
+        "code": "JO",
+        "name": "jordan"
+    },
+    "104": {
+        "code": "KZ",
+        "name": "kazakhstan"
+    },
+    "106": {
+        "name": "south korea"
+    },
+    "108": {
+        "code": "KW",
+        "name": "kuwait"
+    },
+    "111": {
+        "code": "LB",
+        "name": "lebanon"
+    },
+    "113": {
+        "code": "MY",
+        "name": "malaysia"
+    },
+    "119": {
+        "code": "OM",
+        "name": "oman"
+    },
+    "120": {
+        "code": "PK",
+        "name": "pakistan"
+    },
+    "122": {
+        "code": "PH",
+        "name": "philippines"
+    },
+    "123": {
+        "code": "QA",
+        "name": "qatar"
+    },
+    "124": {
+        "code": "SG",
+        "name": "singapore"
+    },
+    "126": {
+        "code": "LK",
+        "name": "sri lanka"
+    },
+    "128": {
+        "code": "TW",
+        "name": "taiwan"
+    },
+    "131": {
+        "code": "TH",
+        "name": "thailand"
+    },
+    "134": {
+        "code": "TR",
+        "name": "turkey"
+    },
+    "136": {
+        "code": "AE",
+        "name": "united arab emirates"
+    },
+    "143": {
+        "code": "AT",
+        "name": "austria"
+    },
+    "145": {
+        "code": "BY",
+        "name": "belarus"
+    },
+    "146": {
+        "code": "BE",
+        "name": "belgium"
+    },
+    "149": {
+        "code": "BG",
+        "name": "bulgaria"
+    },
+    "150": {
+        "name": "croatia"
+    },
+    "151": {
+        "code": "CZ",
+        "name": "czech republic"
+    },
+    "152": {
+        "code": "DK",
+        "name": "denmark"
+    },
+    "154": {
+        "code": "EE",
+        "name": "estonia"
+    },
+    "156": {
+        "code": "FI",
+        "name": "finland"
+    },
+    "158": {
+        "code": "FR",
+        "name": "france"
+    },
+    "162": {
+        "code": "DE",
+        "name": "germany"
+    },
+    "166": {
+        "code": "GR",
+        "name": "greece"
+    },
+    "169": {
+        "code": "HU",
+        "name": "hungary"
+    },
+    "171": {
+        "code": "IE",
+        "name": "ireland"
+    },
+    "174": {
+        "code": "IT",
+        "name": "italy"
+    },
+    "178": {
+        "code": "LV",
+        "name": "latvia"
+    },
+    "180": {
+        "code": "LT",
+        "name": "lithuania"
+    },
+    "187": {
+        "code": "NL",
+        "name": "netherlands"
+    },
+    "189": {
+        "code": "NO",
+        "name": "norway"
+    },
+    "190": {
+        "code": "PL",
+        "name": "poland"
+    },
+    "191": {
+        "code": "PT",
+        "name": "portugal"
+    },
+    "192": {
+        "code": "RO",
+        "name": "romania"
+    },
+    "193": {
+        "name": "russia"
+    },
+    "198": {
+        "code": "SI",
+        "name": "slovenia"
+    },
+    "199": {
+        "code": "ES",
+        "name": "spain"
+    },
+    "203": {
+        "code": "SE",
+        "name": "sweden"
+    },
+    "205": {
+        "code": "CH",
+        "name": "switzerland"
+    },
+    "207": {
+        "code": "UA",
+        "name": "ukraine"
+    },
+    "208": {
+        "code": "GB",
+        "name": "united kingdom"
+    },
+    "222": {
+        "code": "CA",
+        "name": "canada"
+    },
+    "227": {
+        "code": "CR",
+        "name": "costa rica"
+    },
+    "228": {
+        "code": "CU",
+        "name": "cuba"
+    },
+    "241": {
+        "code": "MX",
+        "name": "mexico"
+    },
+    "247": {
+        "code": "PR",
+        "name": "puerto rico"
+    },
+    "257": {
+        "code": "US",
+        "name": "united states"
+    },
+    "319": {
+        "code": "AU",
+        "name": "australia"
+    },
+    "334": {
+        "code": "NZ",
+        "name": "new zealand"
+    },
+    "350": {
+        "code": "AR",
+        "name": "argentina"
+    },
+    "353": {
+        "code": "BR",
+        "name": "brazil"
+    },
+    "355": {
+        "code": "CL",
+        "name": "chile"
+    },
+    "357": {
+        "code": "CO",
+        "name": "colombia"
+    },
+    "358": {
+        "code": "EC",
+        "name": "ecuador"
+    },
+    "363": {
+        "code": "PE",
+        "name": "peru"
+    },
+    "365": {
+        "code": "UY",
+        "name": "uruguay"
+    },
+    "366": {
+        "code": "VE",
+        "name": "venezuela"
+    }
+}

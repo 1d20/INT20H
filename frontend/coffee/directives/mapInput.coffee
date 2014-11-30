@@ -1,6 +1,5 @@
 mapInput = () ->
     scope:
-        'mapModel': '='
         'onMapClicked': '&'
     link: (scope, element, attrs) ->
         map = L.map "#{attrs.id}"

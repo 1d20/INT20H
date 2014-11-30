@@ -4,7 +4,7 @@ from json import dumps as to_json
 from models import *
 
 def type_all(request):
-    types = Type.objects.all()
+    types = Type.objects.filter(is_approved=True)
     json = to_json([t.to_json() for t in types])
     return HttpResponse(json)
 

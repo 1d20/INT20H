@@ -7,8 +7,6 @@ class Type(models.Model):
     is_editable = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
 
-
-
     def __str__(self):
         return self.__repr__()
     def __repr__(self):

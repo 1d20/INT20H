@@ -24,8 +24,15 @@ class Type(models.Model):
         json['is_editable'] = self.is_editable
         json['is_approved'] = self.is_approved
 
-        json['child_types'] = [s.src_type.pk for s in self.dst.filter(is_approved=True)]
-        json['parent_types'] = [s.dst_type.pk for s in self.src.filter(is_approved=True)]
+        json['child_types'] = []
+        for s in self.dst.all():
+            if s.src_type.is_approved:
+                json['child_types'].append(s.src_type.pk)
+
+        json['parent_types'] = []
+        for s in self.src.all():
+            if s.dst.is_approved:
+                json['parent_types'].append(s.dst_type.pk)
 
         return json
 

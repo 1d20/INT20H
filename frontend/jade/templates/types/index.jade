@@ -1,9 +1,32 @@
 div(ng-controller='TypesController as types')
-  header
+  section
     .container
       .row
         .col-lg-12
           br
           ul.nav.nav-pills
             li(role='presentation' ng-repeat='type in types.types')
-              a.navigator(href='// "/types/" + type.id //') // type.name //
+              a(href='// "/types/" + type.id //') // type.name | uppercase //
+      .row
+        .col-lg-12
+          h1.header Add new type
+          form.form-horizontal(ng-submit='types.addType()')
+            .form-group
+              label.control-label.col-sm-2 Name 
+              .col-sm-10
+                input.form-control(name='name' ng-model='types.type.name')
+            .form-group
+              label.control-label.col-sm-2 Description 
+              .col-sm-10
+                input.form-control(name='desc' ng-model='types.type.desc')
+            .form-group
+              label.control-label.col-sm-2 Attrributes 
+              .col-sm-10
+                input.form-control(name='attrs' ng-model='types.type.attrs')
+            .form-group
+              label.control-label.col-sm-2 Parent Type 
+              .col-sm-10
+                select.form-control(name='dst' ng-model='types.type.dst', ng-options="type.id as type.name for type in types.types")
+            .form-group
+              .col-sm-10.col-sm-offset-2
+                button.btn.btn-primary(type='submit') Add

@@ -14,6 +14,9 @@ def user_node(id):
     l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=id)]
     if len(l):
         n = l[0]
+        if len(l)>1:
+            for k in l[1:]:
+                k.delete()
     else:
         n, = db().create(node({"uid":id}))
         n.add_labels("User")

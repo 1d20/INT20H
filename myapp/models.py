@@ -7,6 +7,8 @@ class Type(models.Model):
     is_editable = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
 
+
+
     def __str__(self):
         return self.__repr__()
     def __repr__(self):
@@ -28,7 +30,7 @@ class Type2Type(models.Model):
     def to_json(self):
         return {'id':self.pk, 'src':self.src_type.pk, 'dst':self.dst_type.pk}
 
-from py2neo import Node, Relationship
+#from py2neo import Node, Relationship
 
 # class AbstractNode():
 #     def __init__(self, node_type):

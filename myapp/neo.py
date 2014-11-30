@@ -38,7 +38,7 @@ def seed():
 
 def create(label, values, parent):
     n, = db().create(node(values))
-    n.add_labels(label)
+    n.add_labels(str(label))
 
     db().create(rel((n, "realate_to", by_id(parent))))
 

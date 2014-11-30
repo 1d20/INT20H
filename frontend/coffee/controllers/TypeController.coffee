@@ -1,10 +1,17 @@
-TypeController = ($scope, $routeParams, $http) -> 
+TypeController = ($scope, $routeParams, $http, $location) -> 
 	self = @
 	@type = {}
 	@fields = {}
 	@node = {}
 	@parent = {}
 	@parents = []
+
+	@likeIt = (node) ->
+		node.likes = if node.is_liked then node.likes - 1 else node.likes + 1
+		node.is_liked = !node.is_liked
+		$http.post "/api/node/#{node.id}/like/"
+			.then (response) ->
+				node.likes = response.data.likes
 
 	@addNew = =>
 		parent = @node.parent
@@ -18,6 +25,7 @@ TypeController = ($scope, $routeParams, $http) ->
 		$http.post "/api/node/add", data
 			.then (response) =>
 				@node = {}
+				$location.path "/types/#{@type.id}"
 
 	@mapClicked = (data) ->
 		$scope.$apply ->
@@ -43,4 +51,4 @@ TypeController = ($scope, $routeParams, $http) ->
 			
 
 angular.module 'best.controllers'
-	.controller 'TypeController', ['$scope', '$routeParams', '$http', TypeController]
+	.controller 'TypeController', ['$scope', '$routeParams', '$http', '$location', TypeController]

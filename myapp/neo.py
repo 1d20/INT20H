@@ -43,7 +43,12 @@ def create(label, values, parent):
     db().create(rel((n, "realate_to", by_id(parent))))
 
 def find_by_label(label):
-    return [neo4j.Node(path).get_properties() for path in db().find(label)]
+    nodes = []
+    for n in [neo4j.Node(path) for path in db().find(label)]:
+        nn = n.get_properties()
+        nn['id'] = n._id
+        nodes.append(nn)
+    return nodes
 
 def find_by_id(id):
     return by_id(id).get_properties()

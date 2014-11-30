@@ -1,5 +1,5 @@
 bestMap = ->
-	scope = markers: '='
+	scope = mapModel: '='
 	
 	map = {}
 	
@@ -77,7 +77,7 @@ bestMap = ->
 		console.log 'configureMap'
 
 	link: (scope, element, attrs) ->
-		markers = scope.markers
+		markers = scope.mapModel
 
 		console.log attrs.id
 		maxLikes = 1000

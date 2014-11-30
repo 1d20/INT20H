@@ -3,7 +3,7 @@ div(ng-controller="HomeController as home")
     .container
       .row
         .col-lg-12
-          #main-map(style='height: 600px;')
+          #main-map(best-map markers='mapModel' style='height: 600px;')
       .row
         .col-lg-12
           .intro-text
@@ -56,3 +56,7 @@ div(ng-controller="HomeController as home")
             | a professional looking to research data, or a 
             | analytic looking for stat, this project is the 
             | perfect starting point!
+      .row
+        .col-lg-4.col-lg-offset-2
+          div#node-d3js(d3js-node nodes-model='nodesModel')
+          

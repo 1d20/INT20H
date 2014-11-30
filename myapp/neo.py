@@ -12,6 +12,7 @@ def db():
 def by_id(id):
     return node(neo4j.Node("http://localhost:7474/db/data/node/%d"%int(id)))
 def user_node(id):
+    global usr_node
     if usr_node:
         return usr_node
     else:

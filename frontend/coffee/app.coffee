@@ -1,18 +1,28 @@
+locationConfig = ($locationProvider) ->
+    $locationProvider.html5Mode(true)
+
+routerConfig = ($routeProvider) -> 
+    $routeProvider
+        .when '/',
+            templateUrl: '/static/templates/home.html'
+        .when '/types',
+            templateUrl: '/static/templates/types/index.html'
+        .when '/types/:typeId',
+            templateUrl: '/static/templates/types/show.html',
+        .otherwise
+            redirectTo: '/'
+
+customInterpolation = ($interpolateProvider) ->
+    $interpolateProvider.startSymbol('//');
+    $interpolateProvider.endSymbol('//');
+
 angular.module 'best', [
-	'best.filters'
-	'best.services'
-	'best.directives'
-	'best.controllers'
+    'ngRoute'
+    'best.filters'
+    'best.services'
+    'best.directives'
+    'best.controllers'
 ]
-
-map = L.map 'main-map'
-	.setView [51.505, -0.09], 13
-
-L.tileLayer 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-		'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-		'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-	id: 'examples.map-i875mjb7'
-}
-.addTo(map)
+    .config ['$interpolateProvider', customInterpolation]
+    .config ['$locationProvider', locationConfig]
+    .config ['$routeProvider', routerConfig]

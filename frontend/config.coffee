@@ -7,8 +7,8 @@ module.exports =
 		src: src + '/jade/index.jade'
 		dest: __dirname + '/../templates'
 	templates:
-		src: [src + '/jade/templates/*.jade']
-		dest: dest
+		src: [src + '/jade/templates/**/*.jade']
+		dest: dest + '/templates'
 	compass:
 		src: [src + '/sass/**/*.sass']
 		dest: dest + '/css'
@@ -33,6 +33,7 @@ module.exports =
 			src: [
 				bower + '/jquery/dist/jquery.js'
 				bower + '/angular/angular.js'
+				bower + '/angular-route/angular-route.js'
 				bower + '/d3/d3.min.js'
 				bower + '/leaflet/dist/leaflet.js'
 			]

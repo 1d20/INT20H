@@ -1,0 +1,58 @@
+div(ng-controller="HomeController as home")
+  header
+    .container
+      .row
+        .col-lg-12
+          #main-map(style='height: 600px;')
+      .row
+        .col-lg-12
+          .intro-text
+            span.name BEST STATS
+            hr.star-light
+            span.skills Best stats - evaluate all the possible educational institutes
+
+  section#portfolio
+    .container
+      .row
+        .col-lg-12.text-center
+          h2 Evaluate 
+          hr.star-primary
+      .row
+        .col-sm-4.portfolio-item
+          a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
+            .caption
+              .caption-content
+                i.fa.fa-search-plus.fa-3x
+            img.img-responsive(src='/static/images/tie.png', alt='')
+        .col-sm-4.portfolio-item
+          a.portfolio-link(href='#portfolioModal2', data-toggle='modal')
+            .caption
+              .caption-content
+                i.fa.fa-search-plus.fa-3x
+            img.img-responsive(src='/static/images/presentation.png', alt='')
+        .col-sm-4.portfolio-item
+          a.portfolio-link(href='#portfolioModal3', data-toggle='modal')
+            .caption
+              .caption-content
+                i.fa.fa-search-plus.fa-3x
+            img.img-responsive(src='/static/images/workspace.png', alt='')
+
+  section#about.success
+    .container
+      .row
+        .col-lg-12.text-center
+          h2 About
+          hr.star-light
+      .row
+        .col-lg-4.col-lg-offset-2
+          p
+            | BEST STATS is free opensource project for 
+            | collecting stats on educational institutes 
+            | ratings and another educational components 
+            | like departments and student groups.
+        .col-lg-4
+          p
+            | Whether you're a student looking to showcase, 
+            | a professional looking to research data, or a 
+            | analytic looking for stat, this project is the 
+            | perfect starting point!

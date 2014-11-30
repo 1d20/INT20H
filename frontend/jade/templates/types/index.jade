@@ -1,0 +1,9 @@
+div(ng-controller='TypesController as types')
+  header
+    .container
+      .row
+        .col-lg-12
+          br
+          ul.nav.nav-pills
+            li(role='presentation' ng-repeat='type in types.types')
+              a.navigator(href='// "/types/" + type.id //') // type.name //

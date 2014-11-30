@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from json import dumps as to_json
+from json import loads as from_json
 
 from models import *
 from neo import *
@@ -70,7 +71,7 @@ def node_add(request):
     node_type = Type.objects.get(pk=request.POST['type'])
     values = request.POST['values']
     parent = request.POST['parent']
-    create(node_type.name, values, parent)
+    create(node_type.name, from_json(values), parent)
     return HttpResponse('done')
 
 def node_by_label(request, label):

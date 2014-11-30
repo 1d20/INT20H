@@ -9,7 +9,6 @@ class Type(models.Model):
 
     def __str__(self):
         return self.__repr__()
-
     def __repr__(self):
         return self.name
 
@@ -28,3 +27,23 @@ class Type2Type(models.Model):
 
     def to_json(self):
         return {'id':self.pk, 'src':self.src_type.pk, 'dst':self.dst_type.pk}
+
+from py2neo import Node, Relationship
+
+# class AbstractNode():
+#     def __init__(self, node_type):
+#         self.node_type = node_type
+#         self.node = Node(node_type.name)
+
+#     def save(self):
+
+
+
+# alice = Node("Person", name="Alice")
+# >>> bob = Node("Person", name="Bob")
+# >>> alice_knows_bob = Relationship(alice, "KNOWS", bob)
+# >>> graph.create(alice_knows_bob)
+# alice.properties["age"] = 33
+# >>> bob.properties["age"] = 44
+# >>> alice.push()
+# >>> bob.push()

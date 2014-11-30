@@ -18,4 +18,8 @@ urlpatterns = patterns('',
     url(r'^type/$', type_all),
     url(r'^type/add$', type_add),
     url(r'^type/(?P<pk>\d+)/$', type_by_id),
+
+    url(r'^type2type/$', type2type_all),
+    url(r'^type2type/add$', type2type_add),
+    url(r'^type2type/(?P<pk>\d+)/$', type2type_by_id),
 )

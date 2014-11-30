@@ -18,12 +18,41 @@ def type_add(request):
     newtype.attrs = request.POST['attrs']
     newtype.save()
 
+    newtype2type = Type2Type();
+    newtype2type.src_type = newtype
+    newtype2type.dst_type = Type.objects.get(pk=int(request.POST['dst']))
+    newtype2type.save()
+
     return HttpResponse('done')
 
 def type_by_id(request, pk):
     try:
         requested_type = Type.objects.get(pk=pk)
     except Type.DoesNotExist:
+        return HttpResponse('not found')
+    json = to_json(requested_type.to_json())
+    return HttpResponse(json)
+
+def type2type_all(request):
+    types = Type2Type.objects.all()
+    json = to_json([t.to_json() for t in types])
+    return HttpResponse(json)
+
+def type2type_add(request):
+    if not request.method == "POST":
+        return HttpResponse('request shoud be POST, but it is %s'%str(request.method))
+
+    newtype2type = Type2Type();
+    newtype2type.src_type = Type.objects.get(pk=int(request.POST['src']))
+    newtype2type.dst_type = Type.objects.get(pk=int(request.POST['dst']))
+    newtype2type.save()
+
+    return HttpResponse('done')
+
+def type2type_by_id(request, pk):
+    try:
+        requested_type = Type2Type.objects.get(pk=pk)
+    except Type2Type.DoesNotExist:
         return HttpResponse('not found')
     json = to_json(requested_type.to_json())
     return HttpResponse(json)

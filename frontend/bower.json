@@ -21,6 +21,10 @@
     "leaflet": "~0.7.3",
     "d3": "~3.4.13",
     "font-awesome": "~4.2.0",
-    "angular-route": "~1.3.4"
+    "angular-route": "~1.3.4",
+    "chartjs": "~0.2.0",
+    "highcharts-ng": "~0.0.7",
+    "highcharts.com": "~4.0.4",
+    "c3js-chart": "~0.4.4"
   }
 }

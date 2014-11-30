@@ -96,7 +96,7 @@ bestMap = ->
 		L.tileLayer 'https://{s}.tiles.mapbox.com/v3/thymajesty.kbp9jbaa/{z}/{x}/{y}.png', configureMap
 		.addTo(map)
 		markers = for i in [0...2]
-					{likes_count: i*100, long_latt: [49, 32], description:'description: Lorem ipsum Sed tempor Ut minim fugiat ea sed quis ad eiusmod sed proident non Duis'}
+					{likes_count: i*100, long_latt: [50.438265372826606, 30.517272949218754], description:'description: Lorem ipsum Sed tempor Ut minim fugiat ea sed quis ad eiusmod sed proident non Duis'}
 		
 		markers.isAddPosible = true
 

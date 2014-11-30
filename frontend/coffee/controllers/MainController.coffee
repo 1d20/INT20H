@@ -10,7 +10,7 @@ MainController = ($http, SessionService) ->
 	getUserError = (reject) ->
 		console.log reject
 
-	$http.get 'json/index.json' 
+	$http.get '/static/json/index.json' 
 		.then getUserSuccess, getUserError
 
 angular.module 'best.controllers'

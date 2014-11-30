@@ -1,7 +1,8 @@
 doctype html
 head
   meta(charset='utf-8')
-  title BEST
+  base(href="/")
+  title BEST STATS
   link(href='/static/css/vendors.css', rel='stylesheet', type='text/css')
   link(href='/static/css/styles.css', rel='stylesheet', type='text/css')
 body#page-top.index(ng-app='best' ng-controller='MainController as main')
@@ -13,7 +14,7 @@ body#page-top.index(ng-app='best' ng-controller='MainController as main')
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href='#page-top') Start Bootstrap
+        a.navbar-brand(href='#page-top') BEST STATS
 
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
@@ -22,68 +23,15 @@ body#page-top.index(ng-app='best' ng-controller='MainController as main')
           li.page-scroll
             a(href='#portfolio') Portfolio
           li.page-scroll
-            a(href='#about') About
+            a(href='/types') Types
           li.page-scroll
-            a(href='#contact') Contact
+            | {% if not user.id %} 
+            | <a href='/login/google-oauth2'> Login</a>
+            | {% else %} 
+            | <a href='/logout'> {{ user.username }} </a>
+            | {% endif %}
 
-  header
-    .container
-      .row
-        .col-lg-12
-          #main-map(style='height: 600px;')
-      .row
-        .col-lg-12
-          .intro-text
-            span.name BEST MAPS
-            hr.star-light
-            span.skills Best maps - evaluate all the possible educational institutes
-
-  section#portfolio
-    .container
-      .row
-        .col-lg-12.text-center
-          h2 Evaluate 
-            a(href='/login/google-oauth2') Login
-          hr.star-primary
-      .row
-        .col-sm-4.portfolio-item
-          a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-            .caption
-              .caption-content
-                i.fa.fa-search-plus.fa-3x
-            img.img-responsive(src='/static/images/tie.png', alt='')
-        .col-sm-4.portfolio-item
-          a.portfolio-link(href='#portfolioModal2', data-toggle='modal')
-            .caption
-              .caption-content
-                i.fa.fa-search-plus.fa-3x
-            img.img-responsive(src='/static/images/presentation.png', alt='')
-        .col-sm-4.portfolio-item
-          a.portfolio-link(href='#portfolioModal3', data-toggle='modal')
-            .caption
-              .caption-content
-                i.fa.fa-search-plus.fa-3x
-            img.img-responsive(src='/static/images/workspace.png', alt='')
-
-  section#about.success
-    .container
-      .row
-        .col-lg-12.text-center
-          h2 About
-          hr.star-light
-      .row
-        .col-lg-4.col-lg-offset-2
-          p
-            | BEST MAPS is free opensource project for 
-            | collecting stats on educational institutes 
-            | ratings and another educational components 
-            | like departments and student groups.
-        .col-lg-4
-          p
-            | Whether you're a student looking to showcase, 
-            | a professional looking to research data, or a 
-            | analytic looking for stat, this project is the 
-            | perfect starting point!
+  div(ng-view)
   
   footer.text-center
     .footer-above
@@ -114,16 +62,16 @@ body#page-top.index(ng-app='best' ng-controller='MainController as main')
                 a.btn-social.btn-outline(href='#')
                   i.fa.fa-fw.fa-dribbble
           .footer-col.col-md-4
-            h3 About BEST MAPS
+            h3 About BEST STATS
             p
-              | BEST MAPS is a free to use, open source project created by 
+              | BEST STATS is a free to use, open source project created by 
               a(href='http://1d20dev.com') 1d20dev
               | .
     .footer-below
       .container
         .row
           .col-lg-12
-            | Copyright © BEST MAPS 2014
+            | Copyright © BEST STATS 2014
 
   script(src='/static/js/vendors.js')
   script(src='/static/js/scripts.js')

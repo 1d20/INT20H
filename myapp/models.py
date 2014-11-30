@@ -12,6 +12,9 @@ class Type(models.Model):
     def __repr__(self):
         return self.name
 
+    def get_parents(self):
+        return [s.dst_type for s in self.src.filter(is_approved=True)]
+
     def to_json(self):
         json = {}
         json['id'] = self.pk
@@ -21,8 +24,8 @@ class Type(models.Model):
         json['is_editable'] = self.is_editable
         json['is_approved'] = self.is_approved
 
-        json['child_types'] = [s.src_type.pk for s in self.dst.all()]
-        json['parent_types'] = [s.dst_type.pk for s in self.src.all()]
+        json['child_types'] = [s.src_type.pk for s in self.dst.filter(is_approved=True)]
+        json['parent_types'] = [s.dst_type.pk for s in self.src.filter(is_approved=True)]
 
         return json
 
@@ -39,22 +42,3 @@ class Type2Type(models.Model):
     def to_json(self):
         return {'id':self.pk, 'src':self.src_type.pk, 'dst':self.dst_type.pk}
 
-#from py2neo import Node, Relationship
-
-# class AbstractNode():
-#     def __init__(self, node_type):
-#         self.node_type = node_type
-#         self.node = Node(node_type.name)
-
-#     def save(self):
-
-
-
-# alice = Node("Person", name="Alice")
-# >>> bob = Node("Person", name="Bob")
-# >>> alice_knows_bob = Relationship(alice, "KNOWS", bob)
-# >>> graph.create(alice_knows_bob)
-# alice.properties["age"] = 33
-# >>> bob.properties["age"] = 44
-# >>> alice.push()
-# >>> bob.push()

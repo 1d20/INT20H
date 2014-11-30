@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from json import dumps as to_json
+
 from models import *
+from neo import *
 
 def type_all(request):
     types = Type.objects.filter(is_approved=True)
@@ -56,3 +58,23 @@ def type2type_by_id(request, pk):
         return HttpResponse('not found')
     json = to_json(requested_type.to_json())
     return HttpResponse(json)
+
+#===========================================================================================
+def node_add(request):
+    if not request.method == "POST":
+        return HttpResponse('request shoud be POST, but it is %s'%str(request.method))
+    node_type = Type.objects.get(pk=request.POST['type'])
+    values = request.POST['values']
+    create(node_type, values)
+    return HttpResponse('done')
+
+def node_by_label(request, label):
+    nodes = find_by_label(label)
+    json = to_json(nodes)
+    return HttpResponse(json)
+
+def node_by_id(request, pk):
+    node = find_by_id(pk)
+    json = to_json(node)
+    return HttpResponse(json)
+

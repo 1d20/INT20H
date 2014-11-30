@@ -1,19 +1,8 @@
 from django.conf.urls import patterns, include, url
 
-from api import *
 from views import *
 
 urlpatterns = patterns('',
-    url(r'^$', apimap),
-
-    url(r'^seed/$', seed),
-
-    url(r'^country/$', country_all),
-    url(r'^country/(?P<code>\w+)/$', country_by_code),
-
-    url(r'^university/$', university_all),
-    url(r'^university/(?P<code>\w+)/$', university_by_code),
-
 
     url(r'^type/$', type_all),
     url(r'^type/add$', type_add),
@@ -22,4 +11,11 @@ urlpatterns = patterns('',
     url(r'^type2type/$', type2type_all),
     url(r'^type2type/add$', type2type_add),
     url(r'^type2type/(?P<pk>\d+)/$', type2type_by_id),
+
+
+    url(r'^label/(?P<label>\w+)/$', node_by_label),
+    url(r'^node/add$', node_add),
+    url(r'^node/(?P<pk>\d+)/$', node_by_id),
+
+
 )

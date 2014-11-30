@@ -26,9 +26,9 @@ body#page-top.index(ng-app='best' ng-controller='MainController as main')
             a(href='/types') Search
           li.page-scroll
             | {% if not user.id %} 
-            | <a href='/login/google-oauth2'> Login</a>
+            | <a target='_self' href='/login/google-oauth2'> Login</a>
             | {% else %} 
-            | <a href='/logout'> {{ user.username }} </a>
+            | <a target='_self' href='/logout'> {{ user.username }} </a>
             | {% endif %}
 
   div(ng-view)

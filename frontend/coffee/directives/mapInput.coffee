@@ -2,8 +2,8 @@ mapInput = () ->
 	scope:
 		'onMapClicked': '&'
 
-	isNewMarkerNotSet: true
 	link: (scope, element, attrs) ->
+		isNewMarkerNotSet: true
 		console.log 'mapInput'
 		map = L.map "#{attrs.id}"
 			.setView [ 49, 32], 13
@@ -36,6 +36,9 @@ mapInput = () ->
 							scope.onMapClicked data: event.target._latlng
 							console.log('dragend', event.target._latlng)
 						).addTo(map)
+
+
+
 
 angular.module 'best.directives'
 	.directive 'mapInput', mapInput

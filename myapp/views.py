@@ -26,36 +26,12 @@ def type_add(request):
     newtype2type.dst_type = Type.objects.get(pk=int(request.POST['dst']))
     newtype2type.save()
 
-    return HttpResponse('done')
+    return HttpResponse(to_json({'status':'done', 'type':newtype.to_json()}))
 
 def type_by_id(request, pk):
     try:
         requested_type = Type.objects.get(pk=pk)
     except Type.DoesNotExist:
-        return HttpResponse('not found')
-    json = to_json(requested_type.to_json())
-    return HttpResponse(json)
-
-def type2type_all(request):
-    types = Type2Type.objects.all()
-    json = to_json([t.to_json() for t in types])
-    return HttpResponse(json)
-
-def type2type_add(request):
-    if not request.method == "POST":
-        return HttpResponse('request shoud be POST, but it is %s'%str(request.method))
-
-    newtype2type = Type2Type();
-    newtype2type.src_type = Type.objects.get(pk=int(request.POST['src']))
-    newtype2type.dst_type = Type.objects.get(pk=int(request.POST['dst']))
-    newtype2type.save()
-
-    return HttpResponse('done')
-
-def type2type_by_id(request, pk):
-    try:
-        requested_type = Type2Type.objects.get(pk=pk)
-    except Type2Type.DoesNotExist:
         return HttpResponse('not found')
     json = to_json(requested_type.to_json())
     return HttpResponse(json)
@@ -87,3 +63,7 @@ def node_by_id(request, pk):
 def node_like(request, pk):
     diff, likes = like(request.user.id, pk)
     return HttpResponse(to_json({'action':diff, 'likes':likes}))
+
+def node_top(request, count = 20):
+    highest = top(request.user.id)[:int(count)]
+    return HttpResponse(to_json(highest))

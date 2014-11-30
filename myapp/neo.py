@@ -86,11 +86,18 @@ def like(user_id, id):
         likes[0].delete()
         return -1, len(list(db().match(rel_type='like', end_node=by_id(id))))
 
+def top(user_id):
+    data = neo4j.CypherQuery(db(), "START z=node(*) RETURN z").execute().data
+    nodes = [d.values[0] for d in data]
+    nodes_data = []
+    for n in nodes:
+        nn = n.get_properties()
+        nn['id'] = n._id
+        nn['likes'] = len(list(db().match(rel_type='like', end_node=n)))
+        nn['is_liked'] = len(list(db().match(rel_type='like', end_node=n, start_node=user_node(user_id))))
+        nodes_data.append(nn)
 
-
-
-
-
+    return sorted(nodes_data, key=lambda n: n['likes'], reverse=True)
 
 
 

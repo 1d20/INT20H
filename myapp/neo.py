@@ -15,7 +15,7 @@ def user_node(id):
     if len(l)==1:
         n, = l
     else:
-        n, = db().create(node({"uid":user_id}))
+        n, = db().create(node({"uid":id}))
         n.add_labels("User")
     return n
 

@@ -52,10 +52,11 @@ def find_by_id(id):
     return by_id(id).get_properties()
 
 def like(user_id, id):
-    l = db().find("User",property_key="uid", property_value=user_id)
-    user_node = l[0] if len(l) == 1 else [None]
-    if not user_node:
-        user_node, db().create(node({"uid":user_id}))
+    l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=user_id)]
+    if len(l)==1:
+        user_node, = l
+    else:
+        user_node, = db().create(node({"uid":user_id}))
         user_node.add_labels("User")
 
     db().create(rel((user_node, "like", by_id(id))))

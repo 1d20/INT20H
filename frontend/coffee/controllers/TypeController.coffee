@@ -15,10 +15,7 @@ TypeController = ($scope, $routeParams, $http) ->
 			type: $routeParams.typeId
 			parent: parent
 
-		console.log data
 		$http.post "/api/node/add", data
-			# type (id), values => name,code, parent (node_id)
-		# $http.post "/api/node/#{$routeParams.typeId}/create", data
 			.then (response) =>
 				@node = {}
 
@@ -30,8 +27,11 @@ TypeController = ($scope, $routeParams, $http) ->
 	$http.get "/api/type/#{$routeParams.typeId}"
 		.then (response) =>
 			@type = response.data
-			console.log @type
 			@fields = @type.attrs.split ','
+
+			$http.get "/api/label/#{@type.name}"
+				.then (res) => 
+					@type.nodes = res.data
 
 			$http.get "/api/type/#{@type.parent_types[0]}"
 				.then (res) => 

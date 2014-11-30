@@ -8,4 +8,6 @@ div(ng-controller="TypeController as type")
             a.pull-right.btn.btn-primary(href='// "/types/" + type.type.id + "/create" //')
               i.fa.fa-plus
               | Add new
-          pre // type.type | json //
+          .nodes(ng-repeat='node in type.type.nodes')
+            blockquote
+              p(ng-repeat='(key,value) in node' ng-if='key | excludeHidden') // key | uppercase // - // value //

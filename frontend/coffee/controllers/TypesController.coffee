@@ -11,10 +11,8 @@ TypesController = ($http) ->
 		.then (response) =>
 			@types = response.data
 			@type.dst = @types[0].id
-			console.log @type
 
 	@addType = =>
-		console.log @type
 		data = angular.copy @type
 		$http.post '/api/type/add', data
 			.then (response) =>

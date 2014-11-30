@@ -43,7 +43,8 @@ mapInput = () ->
 		map.on 'lacationfound', (e) ->
 			console.log e
 			radius = e.accuracy / 2;
-			L.marker(e.latlng).addTo(map)
+			L.marker e.latlng
+				.addTo(map)
 				.bindPopup("You are within " + radius + " meters from this point").openPopup()
 			L.circle(e.latlng, radius).addTo(map)
 			return

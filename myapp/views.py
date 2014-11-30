@@ -83,4 +83,5 @@ def node_by_id(request, pk):
     return HttpResponse(json)
 
 def node_like(request, pk):
+    like(request.user.id, pk)
     return HttpResponse('done')

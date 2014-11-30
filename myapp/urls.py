@@ -18,6 +18,6 @@ urlpatterns = patterns('',
     url(r'^node/add$', node_add),
     url(r'^node/(?P<pk>\d+)/$', node_by_id),
 
-    url(r'^node/(?P<pk>\d+)/like$', node_like),
+    url(r'^node/(?P<pk>\d+)/like/$', node_like),
 
 )

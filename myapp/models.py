@@ -13,7 +13,18 @@ class Type(models.Model):
         return self.name
 
     def to_json(self):
-        return {'id':self.pk, 'name':self.name, 'desc':self.desc, 'attrs':self.attrs, 'is_editable':self.is_editable, 'is_approved':self.is_approved}
+        json = {}
+        json['id'] = self.pk
+        json['name'] = self.name
+        json['desc'] = self.desc
+        json['attrs'] = self.attrs
+        json['is_editable'] = self.is_editable
+        json['is_approved'] = self.is_approved
+
+        json['child_types'] = [s.src_type.pk for s in self.dst.all()]
+        json['parent_types'] = [s.dst_type.pk for s in self.src.all()]
+
+        return json
 
 
 class Type2Type(models.Model):

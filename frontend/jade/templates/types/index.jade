@@ -19,7 +19,7 @@ div(ng-controller='TypesController as types')
       .row
         blockquote.col-sm-4.nodes(ng-repeat='node in types.nodes track by $index')
           p(ng-repeat='(key,value) in node' ng-if='key | excludeHidden') // key | uppercase // - // value //
-          small.node(ng-click='type.likeIt(node)')
+          small.node(ng-click='types.likeIt(node)')
             a
               | Like it &nbsp;
               i.fa(ng-class='{"fa-heart": node.is_liked, "fa-heart-o": !node.is_liked}') 

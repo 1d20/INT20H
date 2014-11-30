@@ -25,6 +25,13 @@ TypesController = ($scope, $http) ->
 			.then (response) =>
 				@type = {}
 
+	@likeIt = (node) ->
+		node.likes = if node.is_liked then node.likes - 1 else node.likes + 1
+		node.is_liked = !node.is_liked
+		$http.post "/api/node/#{node.id}/like/"
+			.then (response) ->
+				node.likes = response.data.likes
+
 	@download = =>
 		svg = $('#chart svg')[0].outerHTML;
 		$http.post '/pdf/', svg: svg

@@ -60,6 +60,10 @@ def type2type_by_id(request, pk):
     return HttpResponse(json)
 
 #===========================================================================================
+def seed_nodes(request):
+    seed()
+    return HttpResponse('done')
+
 def node_add(request):
     if not request.method == "POST":
         return HttpResponse('request shoud be POST, but it is %s'%str(request.method))
@@ -78,3 +82,5 @@ def node_by_id(request, pk):
     json = to_json(node)
     return HttpResponse(json)
 
+def node_like(request, pk):
+    return HttpResponse('done')

@@ -34,7 +34,8 @@ class AuthComplete(View):
     def get(self, request, *args, **kwargs):
         backend = kwargs.pop('backend')
         try:
-            return complete(request, backend, *args, **kwargs)
+            response = complete(request, backend, *args, **kwargs)
+            return response
         except Exception:
             messages.error(request, "Your Google Apps domain isn't authorized for this app")
             return HttpResponseRedirect('/home/')

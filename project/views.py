@@ -9,19 +9,25 @@ from django.views.generic.base import View
 from social_auth.views import complete
 from social_auth import __version__ as version
 from urllib import urlopen
-# from django.core.files import File
-# from svglib.svglib import svg2rlg
-# from reportlab.graphics import renderPDF
+from django.core.files import File
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPDF
+import os
+from settings import BASE_DIR, STATIC_URL
 
-# def gen_pdf(request):
-#     with open('/tmp/file.svg', 'w') as f:
-#         myfile = File(f)
-#         myfile.write(request.POST['svg'])
+def gen_pdf(request):
+    svg_file = os.path.join(BASE_DIR, 'static') + '/file.svg'
+    pdf_file = os.path.join(BASE_DIR, 'static') + '/file.pdf'
 
-#     drawing = svg2rlg("/tmp/file.svg")
-#     renderPDF.drawToFile(drawing, "/tmp/file.pdf")
+    with open(svg_file, 'w') as f:
+        myfile = File(f)
+        svg = request.POST['svg']
+        myfile.write(svg)
 
-#     return HttpResponseRedirect("/tmp/file.pdf")
+    drawing = svg2rlg(svg_file)
+    renderPDF.drawToFile(drawing, pdf_file)
+
+    return HttpResponseRedirect(STATIC_URL + "file.pdf")
 
 def home(request):
     ctx = {

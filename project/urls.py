@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', home),
-    #url(r'^pdf/$', gen_pdf)
+    url(r'^pdf/$', gen_pdf),
 
     url(r'^api/', include('myapp.urls')),
     url(r'^admin/', include(admin.site.urls)),

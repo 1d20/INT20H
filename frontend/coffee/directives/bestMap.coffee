@@ -1,6 +1,12 @@
 bestMap = ->
 	scope = markers: '='
 	
+	map = {}
+	
+	isNewMarkerNotSet = true
+	isAddPosible = false
+	longLatt = []
+
 	colorSettings =
 		min:
 			R: 94
@@ -28,28 +34,57 @@ bestMap = ->
 	toObject = (arr) ->
 		rv = {}
 		for i in [0...arr.length]
-	    	rv[i] = arr[i];
+			rv[i] = arr[i];
 		rv;
+	
+	onMapClick = (e) ->
+		if isAddPosible and isNewMarkerNotSet
+			console.log e.latlng
+			lattLong = [e.latlng.lat, e.latlng.lng]
+			console.log lattLong
+			isNewMarkerNotSet = false
+			L.marker( e.latlng,
+				draggable:true
+				icon: L.divIcon
+					className: 'count-icon'
+					iconSize: [40, 40]
+				).on('dragend', (event) ->
+						lattLong = [event.target._latlng.lat, event.target._latlng.lng]
+						console.log('dragend', lattLong)
+					).addTo(map)
 
-	onEachFeature = (feature, layer) =>
-			popupContent = '<p style="color:black">'
-			console.log feature.properties.popupContent
-			if feature.properties && feature.properties.popupContent
-				popupContent += feature.properties.popupContent
-			popupContent += '</p>'
-			#console.log popupContent
-			console.log layer
-			layer.bindPopup(popupContent)
-			##main-map(best-map, markers='main.markers', style="height: 600px;")
+		#if !isNewMarkerNotSet
+
+
 
 	initMap = (element, maxLikes, markers) ->
+		console.log 'initMap'
 
-		console.log element.id, maxLikes, markers
+		for i in [0...2]
+			console.log getColor(markers[i].likes_count)
+			L.marker(markers[i].long_latt, 
+				icon: L.divIcon
+					className: 'count-icon',
+					html: markers[i].likes_count,
+					iconSize: [40, 40]
+				).bindPopup(L.popup()
+						.setContent(markers[i].description)
+						).addTo(map)
+		map.on('click', onMapClick)
+		#L.marker([-37.7772, 175.2606]).bindLabel('Look revealing label!').addTo(map);
 
-		colorSettings.maxLikes = maxLikes
+	configureMap = () =>
+		console.log 'configureMap'
 
-		map = L.map element.id
-		.setView [ 49, 32], 8
+	link: (scope, element, attrs) ->
+		markers = scope.markers
+
+		console.log attrs.id
+		maxLikes = 1000
+		map = L.map attrs.id 
+			.setView [ 49, 32], 8
+
+		L.Icon.Default.imagePath = 'images'
 
 		initialMapSettings =
 			maxZoom: 18
@@ -58,45 +93,15 @@ bestMap = ->
 						'Imagery © <a href="http://mapbox.com">Mapbox</a>'
 			id: 'thymajesty.kbp9jbaa'
 
-		L.tileLayer 'https://{s}.tiles.mapbox.com/v3/thymajesty.kbp9jbaa/{z}/{x}/{y}.png', initialMapSettings
+		L.tileLayer 'https://{s}.tiles.mapbox.com/v3/thymajesty.kbp9jbaa/{z}/{x}/{y}.png', configureMap
 		.addTo(map)
-		L.Icon.Default.imagePath = 'images'
-		#likes_count
-		#[lat, long]
-		#description
-		###"marker-symbol": "embassy"###
-		geojsonFeaturesArray = for i in [0...2]
-			type: "Feature"
-			properties:
-				"description": markers[i].description + ': ' + i
-				"marker-color": getColor(markers[i].likes_count)
-				"marker-size": "medium"
-				q:''
-				
-			geometry:
-				"type": "Point"
-				"coordinates": 
-						[markers[i].long_latt[0]+ i, markers[i].long_latt[1]+ i]
-		geojsonFeatures = 
-			features: geojsonFeaturesArray
-			id: "thymajesty.kbp9jbaa"
-			type: "FeatureCollection"
+		markers = for i in [0...2]
+					{likes_count: i*100, long_latt: [49, 32], description:'description: Lorem ipsum Sed tempor Ut minim fugiat ea sed quis ad eiusmod sed proident non Duis'}
+		
+		markers.isAddPosible = true
 
-
-		console.log 'lol', JSON.stringify geojsonFeatures 
-		L.geoJson(geojsonFeaturesArray,
-				onEachFeature: onEachFeature
-			).addTo(map)
-
-	link: (scope, element, attrs) ->
-		markers = scope.markers
-		console.log attrs.id
-		maxLikes = 1000
-
-		markers = for i in [566...586] by 10
-					{likes_count: i, long_latt: [32, 49], description:'ololo likes'}
-
-		console.log markers[0].long_latt
+		isAddPosible = markers.isAddPosible
+		configureMap
 		initMap attrs, maxLikes, markers
 		console.log 'directive bestMap'
 		

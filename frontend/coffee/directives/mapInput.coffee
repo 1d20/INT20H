@@ -3,11 +3,11 @@ mapInput = () ->
 		'onMapClicked': '&'
 
 	link: (scope, element, attrs) ->
-		isNewMarkerNotSet: true
+		isNewMarkerNotSet = true
 		console.log 'mapInput'
 		map = L.map "#{attrs.id}"
 			.setView [ 49, 32], 13
-
+		console.log 'map', map
 		L.Icon.Default.imagePath = 'images'
 
 		initialMapSettings =
@@ -22,6 +22,7 @@ mapInput = () ->
 		.addTo map
 
 		map.on 'click', (e) ->
+			console.log(e.latlng)
 			if isNewMarkerNotSet
 				console.log('clicked', e.latlng)
 				isNewMarkerNotSet = false

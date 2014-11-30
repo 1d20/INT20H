@@ -12,8 +12,8 @@ def by_id(id):
     return node(neo4j.Node("http://localhost:7474/db/data/node/%d"%int(id)))
 def user_node(id):
     l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=id)]
-    if len(l)>0:
-        n, = l
+    if len(l):
+        n = l[0]
     else:
         n, = db().create(node({"uid":id}))
         n.add_labels("User")

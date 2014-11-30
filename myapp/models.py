@@ -31,7 +31,7 @@ class Type(models.Model):
 
         json['parent_types'] = []
         for s in self.src.all():
-            if s.dst.is_approved:
+            if s.dst_type.is_approved:
                 json['parent_types'].append(s.dst_type.pk)
 
         return json
@@ -47,5 +47,7 @@ class Type2Type(models.Model):
         return self.src_type.name + " ---> " + self.dst_type.name
 
     def to_json(self):
+
+
         return {'id':self.pk, 'src':self.src_type.pk, 'dst':self.dst_type.pk}
 

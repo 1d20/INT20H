@@ -12,7 +12,7 @@ def by_id(id):
     return node(neo4j.Node("http://localhost:7474/db/data/node/%d"%int(id)))
 def user_node(id):
     l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=id)]
-    if len(l)==1:
+    if len(l)>0:
         n, = l
     else:
         n, = db().create(node({"uid":id}))
@@ -77,11 +77,6 @@ def like(user_id, id):
     else:
         likes[0].delete()
         return -1, len(list(db().match(rel_type='like', end_node=by_id(id))))
-
-
-
-
-
 
 
 

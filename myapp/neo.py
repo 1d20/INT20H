@@ -10,6 +10,14 @@ def db():
 
 def by_id(id):
     return node(neo4j.Node("http://localhost:7474/db/data/node/%d"%int(id)))
+def user_node(id):
+    l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=id)]
+    if len(l)==1:
+        n, = l
+    else:
+        n, = db().create(node({"uid":user_id}))
+        n.add_labels("User")
+    return n
 
 def seed():
     db().clear()
@@ -42,27 +50,33 @@ def create(label, values, parent):
 
     db().create(rel((n, "realate_to", by_id(parent))))
 
-def find_by_label(label):
+def find_by_label(user_id, label):
     nodes = []
     for n in [neo4j.Node(path) for path in db().find(label)]:
         nn = n.get_properties()
         nn['id'] = n._id
+        nn['likes'] = len(list(db().match(rel_type='like', end_node=n)))
+        nn['is_liked'] = len(list(db().match(rel_type='like', end_node=n, start_node=user_node(user_id))))
         nodes.append(nn)
     return nodes
 
-def find_by_id(id):
-    return by_id(id).get_properties()
+def find_by_id(user_id, id):
+    n = by_id(id)
+    nn = n.get_properties()
+    nn['likes'] = len(list(db().match(rel_type='like', end_node=n)))
+    nn['is_liked'] = len(list(db().match(rel_type='like', end_node=n, start_node=user_node(user_id))))
+    return nn
 
 def like(user_id, id):
-    l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=user_id)]
-    if len(l)==1:
-        user_node, = l
+    n = user_node(user_id)
+    likes = list(db().match(rel_type='like', end_node=by_id(id), start_node=n))
+    is_liked = len(likes)
+    if is_liked == 0:
+        db().create(rel((n, "like", by_id(id))))
+        return 1, len(list(db().match(rel_type='like', end_node=by_id(id))))
     else:
-        user_node, = db().create(node({"uid":user_id}))
-        user_node.add_labels("User")
-
-    db().create(rel((user_node, "like", by_id(id))))
-
+        likes[0].delete()
+        return -1, len(list(db().match(rel_type='like', end_node=by_id(id))))
 
 
 

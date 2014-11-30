@@ -75,15 +75,15 @@ def node_add(request):
     return HttpResponse('done')
 
 def node_by_label(request, label):
-    nodes = find_by_label(label)
+    nodes = find_by_label(request.user.id, label)
     json = to_json(nodes)
     return HttpResponse(json)
 
 def node_by_id(request, pk):
-    node = find_by_id(pk)
+    node = find_by_id(request.user.id, pk)
     json = to_json(node)
     return HttpResponse(json)
 
 def node_like(request, pk):
-    like(request.user.id, pk)
-    return HttpResponse('done')
+    diff, likes = like(request.user.id, pk)
+    return HttpResponse(to_json({'action':diff, 'likes':likes}))

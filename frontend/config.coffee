@@ -22,6 +22,7 @@ module.exports =
 				bower + '/bootswatch-dist/css/bootstrap.min.css'
 				bower + '/font-awesome/css/font-awesome.min.css'
 				bower + '/leaflet/dist/leaflet.css'
+				bower + '/c3js-chart/c3.css'
 			]
 			dest: dest + '/css'
 		fonts:
@@ -34,7 +35,8 @@ module.exports =
 				bower + '/jquery/dist/jquery.js'
 				bower + '/angular/angular.js'
 				bower + '/angular-route/angular-route.js'
-				bower + '/d3/d3.min.js'
+				bower + '/d3/d3.js'
+				bower + '/c3js-chart/c3.js'
 				bower + '/leaflet/dist/leaflet.js'
 			]
 			dest: dest + '/js'

@@ -40,6 +40,7 @@ TypeController = ($scope, $routeParams, $http, $location) ->
 			$http.get "/api/label/#{@type.name}"
 				.then (res) => 
 					@type.nodes = res.data
+					$scope.$broadcast('nodes.loadend', res.data)
 
 			$http.get "/api/type/#{@type.parent_types[0]}"
 				.then (res) => 

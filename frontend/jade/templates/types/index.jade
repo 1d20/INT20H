@@ -10,6 +10,20 @@ div(ng-controller='TypesController as types')
       hr
       .row
         .col-lg-12
+          .col-lg-12
+            #chart.c3(best-chart best-data='types.nodes')
+
+      .row
+        blockquote.col-sm-4.nodes(ng-repeat='node in types.nodes track by $index')
+          p(ng-repeat='(key,value) in node' ng-if='key | excludeHidden') // key | uppercase // - // value //
+          small.node(ng-click='type.likeIt(node)')
+            a
+              | Like it &nbsp;
+              i.fa(ng-class='{"fa-heart": node.is_liked, "fa-heart-o": !node.is_liked}') 
+              | &nbsp; // node.likes // 
+
+      .row
+        .col-lg-12
           h1.header Suggest new type
           form.form-horizontal(ng-submit='types.addType()')
             .form-group

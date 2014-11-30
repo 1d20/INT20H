@@ -82,7 +82,7 @@ bestMap = ->
 		console.log attrs.id
 		maxLikes = 1000
 		map = L.map attrs.id 
-			.setView [ 49, 32], 8
+			.setView [ 50.438265372826606, 30.517272949218754], 6
 
 		L.Icon.Default.imagePath = 'images'
 

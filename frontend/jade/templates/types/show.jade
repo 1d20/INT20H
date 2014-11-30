@@ -8,11 +8,15 @@ div(ng-controller="TypeController as type")
             a.pull-right.btn.btn-primary(href='// "/types/" + type.type.id + "/create" //')
               i.fa.fa-plus
               | Add new
+      .row
+        .col-lg-12
+          #chart.c3(best-chart best-data='type.type.nodes')
 
-          blockquote.col-sm-4.nodes(ng-repeat='node in type.type.nodes track by $index')
-            p(ng-repeat='(key,value) in node' ng-if='key | excludeHidden') // key | uppercase // - // value //
-            small.node(ng-click='type.likeIt(node)')
-              a
-                | Like it &nbsp;
-                i.fa(ng-class='{"fa-heart": node.is_liked, "fa-heart-o": !node.is_liked}') 
-                | &nbsp; // node.likes // 
+      .row
+        blockquote.col-sm-4.nodes(ng-repeat='node in type.type.nodes track by $index')
+          p(ng-repeat='(key,value) in node' ng-if='key | excludeHidden') // key | uppercase // - // value //
+          small.node(ng-click='type.likeIt(node)')
+            a
+              | Like it &nbsp;
+              i.fa(ng-class='{"fa-heart": node.is_liked, "fa-heart-o": !node.is_liked}') 
+              | &nbsp; // node.likes // 

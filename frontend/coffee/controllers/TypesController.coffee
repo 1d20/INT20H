@@ -1,4 +1,4 @@
-TypesController = ($http) -> 
+TypesController = ($scope, $http) -> 
 	@type = 
 		name: ''
 		desc: ''
@@ -6,6 +6,13 @@ TypesController = ($http) ->
 		dst: 0
 
 	@types = []
+	@nodes = []
+
+	$http.get '/api/node/top/20/'
+		.then (response) => 
+			@nodes = response.data
+			$scope.$broadcast('nodes.loadend', response.data)
+
 
 	$http.get '/api/type/'
 		.then (response) =>
@@ -19,4 +26,4 @@ TypesController = ($http) ->
 				@type = {}
 
 angular.module 'best.controllers'
-	.controller 'TypesController', ['$http', TypesController]
+	.controller 'TypesController', ['$scope', '$http', TypesController]

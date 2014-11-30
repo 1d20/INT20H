@@ -69,7 +69,8 @@ def node_add(request):
         return HttpResponse('request shoud be POST, but it is %s'%str(request.method))
     node_type = Type.objects.get(pk=request.POST['type'])
     values = request.POST['values']
-    create(node_type, values)
+    parent = request.POST['parent']
+    create(node_type.name, values, parent)
     return HttpResponse('done')
 
 def node_by_label(request, label):

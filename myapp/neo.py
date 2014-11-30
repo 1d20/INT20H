@@ -36,12 +36,9 @@ def seed():
     ]
     ss(universities, "University", [neo4j.Node(path) for path in db().find("Country")])
 
-def create(node_type, values):
-    parent = values['parent']
-    del values['parent']
-
+def create(label, values, parent):
     n, = db().create(node(values))
-    n.add_labels(node_type.name)
+    n.add_labels(label)
 
     db().create(rel((n, "realate_to", by_id(parent))))
 

@@ -1,6 +1,7 @@
 from py2neo import neo4j, node, rel
 
 graph_db = None
+usr_node = None
 
 def db():
     global graph_db
@@ -11,16 +12,19 @@ def db():
 def by_id(id):
     return node(neo4j.Node("http://localhost:7474/db/data/node/%d"%int(id)))
 def user_node(id):
-    l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=id)]
-    if len(l):
-        n = l[0]
-        if len(l)>1:
-            for k in l[1:]:
-                k.delete()
+    if usr_node:
+        return usr_node
     else:
-        n, = db().create(node({"uid":id}))
-        n.add_labels("User")
-    return n
+        l = [neo4j.Node(path) for path in db().find("User",property_key="uid", property_value=id)]
+        if len(l):
+            usr_node = l[0]
+            if len(l)>1:
+                for k in l[1:]:
+                    k.delete()
+        else:
+            usr_node, = db().create(node({"uid":id}))
+            usr_node.add_labels("User")
+    return usr_node
 
 def seed():
     db().clear()
